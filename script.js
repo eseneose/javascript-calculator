@@ -12,20 +12,17 @@ class Calculator {
     }
 
     appendNumber(number) {
-
-
         this.currentOperand = this.currentOperand.toString() + number.toString()
-
     }
 
     chooseOperation(operation) {
         if (this.currentOperand === '' && operation == '-') {
             this.appendNumber("-")
-
             return
         }
 
         if (this.currentOperand === '') return
+
         if (this.previousOperand !== '') {
             this.compute()
         }
@@ -86,12 +83,12 @@ class Calculator {
 }
 
 
-const numberButtons = document.querySelectorAll('[data-number]')
-const operationButtons = document.querySelectorAll('[data-operation]')
-const equalsButton = document.querySelector('[data-equals]')
-const allClearButton = document.querySelector('[data-all-clear]')
-const previousOperandTextElement = document.querySelector('[data-previous-operand]')
-const currentOperandTextElement = document.querySelector('[data-current-operand]')
+const numberButtons = document.querySelectorAll('.data-number')
+const operationButtons = document.querySelectorAll('.data-operation')
+const equalsButton = document.querySelector('.eq')
+const allClearButton = document.querySelector('.clear')
+const previousOperandTextElement = document.querySelector('.previous-operand')
+const currentOperandTextElement = document.querySelector('.current-operand')
 
 const calculator = new Calculator(previousOperandTextElement, currentOperandTextElement)
 
@@ -105,15 +102,9 @@ numberButtons.forEach(button => {
 operationButtons.forEach(button => {
     button.addEventListener('click', () => {
         calculator.chooseOperation(button.innerText)
-            //      if (!(calculator.currentOperand == '' && button.innerText == '-')) {
-
         calculator.updateDisplay()
-            //    }
-            // if (button.innerText == '-') { calculator.updateDisplay() } else { calculator.updateDisplay() }
-
     })
 })
-
 
 equalsButton.addEventListener('click', button => {
     calculator.compute()
